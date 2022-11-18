@@ -13,6 +13,8 @@ import java.util.List;
 @RequestMapping("/dictionary/latin/translation")
 public class NumberTranslationController {
 
+    //Это абстракция!!!
+
     NumberTranslateService translateService;
 
     public NumberTranslationController(NumberTranslateService translateService) {
