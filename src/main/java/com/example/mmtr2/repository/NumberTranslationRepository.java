@@ -1,19 +1,10 @@
 package com.example.mmtr2.repository;
 
 import com.example.mmtr2.entity.NumberTranslation;
-import org.springframework.data.repository.CrudRepository;
+import com.example.mmtr2.repository.extend.TranslationRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface NumberTranslationRepository extends CrudRepository<NumberTranslation, Long> {
-
-    @Override
-    List<NumberTranslation> findAll();
-
-    @Override
-    Optional<NumberTranslation> findById(Long aLong);
-
-    Optional<NumberTranslation> findByTranslation(String translation);
+@Repository
+public interface NumberTranslationRepository extends TranslationRepository<NumberTranslation> {
 
 }

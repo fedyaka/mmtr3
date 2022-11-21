@@ -1,7 +1,9 @@
 package com.example.mmtr2.controller;
 
-import com.example.mmtr2.dto.LatinDTO;
-import com.example.mmtr2.dto.NumberDTO;
+import com.example.mmtr2.dto.request.NumberRequest;
+import com.example.mmtr2.dto.request.add.AddTranslationNumber;
+import com.example.mmtr2.dto.request.patch.PatchNumber;
+import com.example.mmtr2.dto.response.WordResponse;
 import com.example.mmtr2.service.NumberService;
 import com.example.mmtr2.service.NumberTranslateService;
 import org.springframework.http.HttpStatus;
@@ -13,44 +15,46 @@ import java.util.List;
 @RequestMapping(value = "/dictionary/number")
 public class NumberController {
 
-    NumberService dictionaryService;
-    NumberTranslateService translateService;
+    NumberService numberService;
 
-    public NumberController(NumberService dictionaryService, NumberTranslateService translateService) {
-        this.dictionaryService = dictionaryService;
-        this.translateService = translateService;
+    public NumberController(NumberService numberService) {
+        this.numberService = numberService;
     }
 
     @GetMapping
-    public List<NumberDTO.Response.Public> getAll(){
-        return dictionaryService.findAll();
+    public List<WordResponse> getAll(){
+        return numberService.findAll();
     }
 
     @GetMapping("/{id}")
-    public NumberDTO.Response.Public getById(@PathVariable("id") Long id){
-        return dictionaryService.findById(id);
+    public WordResponse getById(@PathVariable("id") Long id){
+        return numberService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public NumberDTO.Response.Public createWord(@RequestBody NumberDTO.Request.Create createDto){
-        return dictionaryService.save(createDto);
+    public WordResponse createWord(@RequestBody NumberRequest createDto){
+        return numberService.save(createDto);
+    }
+
+    @PostMapping("/translate")
+    public WordResponse addTranslation(@RequestBody AddTranslationNumber translationWithIdWord){
+        return numberService.addTranslation(translationWithIdWord);
     }
 
     @PatchMapping
-    public NumberDTO.Response.Public patchWord(@RequestBody NumberDTO.Request.Patch patchDto){
-        return dictionaryService.patch(patchDto);
+    public WordResponse patchWord(@RequestBody PatchNumber patchDto){
+        return numberService.patch(patchDto);
     }
-
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
-        dictionaryService.deleteById(id);
+        numberService.deleteById(id);
     }
 
     @DeleteMapping
-    public void deleteByWord(@RequestBody NumberDTO.Request.Delete deleteDto){
-        dictionaryService.deleteByWord(deleteDto);
+    public void deleteByWord(@RequestBody NumberRequest deleteDto){
+        numberService.deleteByWord(deleteDto);
     }
 
 

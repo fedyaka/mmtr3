@@ -1,5 +1,6 @@
 package com.example.mmtr2.entity;
 
+import com.example.mmtr2.entity.extend.AbstractTranslation;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,17 +9,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
-public class NumberTranslation {
-    @Id
-    @GeneratedValue()
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @NonNull
-    private String translation;
+public class NumberTranslation extends AbstractTranslation {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private WordNumber wordNumber;
+    private NumberWord numberWord;
+
+    public NumberTranslation(@NonNull String translation) {
+        super(translation);
+    }
 }

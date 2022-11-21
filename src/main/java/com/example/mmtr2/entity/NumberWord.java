@@ -1,5 +1,6 @@
 package com.example.mmtr2.entity;
 
+import com.example.mmtr2.entity.extend.AbstractWord;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,16 +11,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class WordLatin {
-    @Id
-    @GeneratedValue()
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class NumberWord extends AbstractWord {
 
-    @NonNull
-    private String word;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<LatinTranslation> translations;
+    private List<NumberTranslation> translations;
+
+    public NumberWord(@NonNull String word) {
+        super(word);
+    }
 }

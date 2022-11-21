@@ -1,6 +1,9 @@
 package com.example.mmtr2.controller;
 
-import com.example.mmtr2.dto.LatinDTO;
+import com.example.mmtr2.dto.request.LatinRequest;
+import com.example.mmtr2.dto.request.add.AddTranslationLatin;
+import com.example.mmtr2.dto.request.patch.PatchLatin;
+import com.example.mmtr2.dto.response.WordResponse;
 import com.example.mmtr2.service.LatinService;
 import com.example.mmtr2.service.LatinTranslateService;
 import org.springframework.http.HttpStatus;
@@ -12,44 +15,47 @@ import java.util.List;
 @RequestMapping(value = "/dictionary/latin")
 public class LatinController {
 
-    LatinService dictionaryService;
-    LatinTranslateService translateService;
+    LatinService latinService;
 
-    public LatinController(LatinService latinService, LatinTranslateService translateService) {
-        this.dictionaryService = latinService;
-        this.translateService = translateService;
+    public LatinController(LatinService latinService) {
+        this.latinService = latinService;
     }
 
     @GetMapping
-    public List<LatinDTO.Response.Public> getAll(){
-        return dictionaryService.findAll();
+    public List<WordResponse> getAll(){
+        return latinService.findAll();
     }
 
     @GetMapping("/{id}")
-    public LatinDTO.Response.Public getById(@PathVariable("id") Long id){
-        return dictionaryService.findById(id);
+    public WordResponse getById(@PathVariable("id") Long id){
+        return latinService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LatinDTO.Response.Public createWord(@RequestBody LatinDTO.Request.Create createDto){
-        return dictionaryService.save(createDto);
+    public WordResponse createWord(@RequestBody LatinRequest createDto){
+        return latinService.save(createDto);
+    }
+
+    @PostMapping("/translation")
+    public WordResponse addTranslation(@RequestBody AddTranslationLatin translationWithIdWord){
+        return latinService.addTranslation(translationWithIdWord);
     }
 
     @PatchMapping
-    public LatinDTO.Response.Public patchWord(@RequestBody LatinDTO.Request.Patch patchDto){
-        return dictionaryService.patch(patchDto);
+    public WordResponse patchWord(@RequestBody PatchLatin patchDto){
+        return latinService.patch(patchDto);
     }
 
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
-        dictionaryService.deleteById(id);
+        latinService.deleteById(id);
     }
 
     @DeleteMapping
-    public void deleteByWord(@RequestBody LatinDTO.Request.Delete deleteDto){
-        dictionaryService.deleteByWord(deleteDto);
+    public void deleteByWord(@RequestBody LatinRequest deleteDto){
+        latinService.deleteByWord(deleteDto);
     }
 
 

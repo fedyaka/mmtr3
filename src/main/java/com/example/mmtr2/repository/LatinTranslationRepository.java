@@ -1,19 +1,14 @@
 package com.example.mmtr2.repository;
 
 import com.example.mmtr2.entity.LatinTranslation;
-import org.springframework.data.repository.CrudRepository;
+import com.example.mmtr2.entity.LatinWord;
+import com.example.mmtr2.repository.extend.TranslationRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface LatinTranslationRepository extends CrudRepository<LatinTranslation, Long> {
+@Repository
+public interface LatinTranslationRepository extends TranslationRepository<LatinTranslation> {
 
-    @Override
-    List<LatinTranslation> findAll();
-
-    @Override
-    Optional<LatinTranslation> findById(Long aLong);
-
-    Optional<LatinTranslation> findByTranslation(String translation);
 
 }

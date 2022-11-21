@@ -1,5 +1,6 @@
 package com.example.mmtr2.entity;
 
+import com.example.mmtr2.entity.extend.AbstractTranslation;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,17 +10,12 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class LatinTranslation {
-    @Id
-    @GeneratedValue()
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @NonNull
-    private String translation;
+public class LatinTranslation extends AbstractTranslation {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private WordLatin wordLatin;
+    private LatinWord word;
 
+    public LatinTranslation(@NonNull String translation) {
+        super(translation);
+    }
 }
