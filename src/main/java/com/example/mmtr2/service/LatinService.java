@@ -28,12 +28,12 @@ public class LatinService extends AbstractWordService<LatinWord, LatinWordReposi
         if (word.isEmpty()){
             throw new WordNotFoundException();
         }
-
         LatinWord wordE = word.get();
-        if (wordE.getTranslations().stream().anyMatch(e -> e.getTranslation().equals(translationWithIdWord.getTranslation()))){
+        if (wordE.getTranslations().stream()
+                .anyMatch(e -> e.getTranslation().equals(translationWithIdWord.getTranslation()))){
             throw new TranslationAlreadyExistException();
         }
-        wordE.getTranslations().add(new LatinTranslation(translationWithIdWord.getTranslation()));
+        wordE.getTranslations().add(new LatinTranslation(translationWithIdWord.getTranslation(), wordE));
         return ToDtoService.toDto(repository.save(wordE));
     }
 

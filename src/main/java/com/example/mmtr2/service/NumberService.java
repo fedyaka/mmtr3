@@ -30,10 +30,11 @@ public class NumberService extends AbstractWordService<NumberWord, NumberWordRep
             throw new WordNotFoundException();
         }
         NumberWord wordE = word.get();
-        if (wordE.getTranslations().stream().anyMatch(e -> e.getTranslation().equals(translationWithIdWord.getTranslation()))){
+        if (wordE.getTranslations().stream()
+                .anyMatch(e -> e.getTranslation().equals(translationWithIdWord.getTranslation()))){
             throw new TranslationAlreadyExistException();
         }
-        wordE.getTranslations().add(new NumberTranslation(translationWithIdWord.getTranslation()));
+        wordE.getTranslations().add(new NumberTranslation(translationWithIdWord.getTranslation(), wordE));
         return ToDtoService.toDto(repository.save(wordE));
     }
 

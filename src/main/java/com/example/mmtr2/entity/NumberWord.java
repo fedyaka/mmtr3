@@ -14,7 +14,7 @@ import java.util.List;
 public class NumberWord extends AbstractWord {
 
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "word")
     private List<NumberTranslation> translations;
 
     public NumberWord(@NonNull String word) {

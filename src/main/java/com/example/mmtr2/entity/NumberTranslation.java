@@ -13,9 +13,15 @@ import javax.persistence.*;
 public class NumberTranslation extends AbstractTranslation {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private NumberWord numberWord;
+    @JoinColumn(nullable = false)
+    private NumberWord word;
 
     public NumberTranslation(@NonNull String translation) {
         super(translation);
+    }
+
+    public NumberTranslation(@NonNull String translation, NumberWord word) {
+        super(translation);
+        this.word = word;
     }
 }

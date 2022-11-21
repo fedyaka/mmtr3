@@ -13,7 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 public class LatinWord extends AbstractWord {
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "word")
     private List<LatinTranslation> translations;
 
     public LatinWord(@NonNull String word) {
