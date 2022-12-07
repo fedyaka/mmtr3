@@ -1,4 +1,4 @@
-package com.example.mmtr3.dto.response;
+package com.example.mmtr3.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,9 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @Setter
-public class TranslationResponse {
-    private Long id;
-    private String translation;
+public class RuleDto {
+    private String pattern;
+    private String description;
 }

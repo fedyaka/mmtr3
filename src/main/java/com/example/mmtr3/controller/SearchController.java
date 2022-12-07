@@ -1,17 +1,15 @@
 package com.example.mmtr3.controller;
 
 
-import com.example.mmtr3.dto.request.SearchRequest;
+import com.example.mmtr3.dto.request.WordRequest;
 import com.example.mmtr3.dto.response.WordResponse;
 import com.example.mmtr3.service.SearchService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("dictionary/search")
+@CrossOrigin(origins = "*")
 @RestController
 public class SearchController {
 
@@ -22,7 +20,7 @@ public class SearchController {
     }
 
     @GetMapping
-    public List<WordResponse> search(@RequestBody SearchRequest searchRequest){
-        return searcher.searchWord(searchRequest);
+    public List<WordResponse> search(@RequestBody WordRequest wordRequest){
+        return searcher.searchWord(wordRequest);
     }
 }

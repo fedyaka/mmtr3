@@ -1,42 +1,37 @@
 package com.example.mmtr3.service;
 
-import com.example.mmtr3.dto.request.SearchRequest;
+import com.example.mmtr3.dto.request.WordRequest;
 import com.example.mmtr3.dto.response.WordResponse;
-import com.example.mmtr3.entity.extend.AbstractWord;
+import com.example.mmtr3.entity.Word;
 import com.example.mmtr3.exception.MyException.WordNotFoundException;
-import com.example.mmtr3.repository.extend.WordRepository;
+import com.example.mmtr3.repository.WordRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
 
-    List<WordRepository> repositories;
+    WordRepository wordRepository;
 
-    public SearchService(List<WordRepository> repositories) {
-        this.repositories = repositories;
+    public SearchService(WordRepository wordRepository) {
+        this.wordRepository = wordRepository;
     }
 
-    public List<WordResponse> searchWord(SearchRequest request){
-
-        List<AbstractWord> list = new ArrayList<>();
-        for (WordRepository<AbstractWord> repository : repositories){
-            repository.findByWord(request.getWord()).ifPresent(list::add);
+    public List<WordResponse> searchWord(WordRequest wordRequest) {
+        List<Word> words = new ArrayList<>();
+        if (wordRequest.getDictionaryId() == null){
+            words = wordRepository.findAllByWord(wordRequest.getWord());
+            if(words.isEmpty()){
+                throw new WordNotFoundException();
+            }
+        } else {
+            words.add(wordRepository.findWordByWordAndDictionaryId(wordRequest.getWord(), wordRequest.getDictionaryId())
+                    .orElseThrow(WordNotFoundException::new));
         }
-
-        List<WordResponse> result = new ArrayList<>();
-        for (AbstractWord word1 : list){
-            result.add(ToDtoService.toDto(word1));
-        }
-
-        if (result.isEmpty()){
-            throw new WordNotFoundException();
-        }
-        for (WordResponse word : result){
-            System.out.println("ответ " + word.getWord());
-        }
-        return result;
+        return words.stream().map(ToDtoService::toDto).collect(Collectors.toList());
     }
 }

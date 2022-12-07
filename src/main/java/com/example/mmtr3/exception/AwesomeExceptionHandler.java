@@ -47,33 +47,49 @@ public class AwesomeExceptionHandler {
         return new ValidationErrorResponse(violations);
     }
 
-    @ExceptionHandler(EmptyDictionaryListException.class)
-    protected ResponseEntity<AwesomeException> EmptyDictionaryListException(){
-        return new ResponseEntity<>(new AwesomeException("No words in the list"),HttpStatus.NOT_FOUND);
+    @ExceptionHandler(WordRuleException.class)
+    protected ResponseEntity<AwesomeException> WordRuleException(){
+        return new ResponseEntity<>(new AwesomeException("Не соответствует правилам ввода"), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DictionaryIsEmptyException.class)
+    protected ResponseEntity<AwesomeException> DictionaryIsEmptyException(){
+        return new ResponseEntity<>(new AwesomeException("Словарь пустой."),HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DictionaryNotFoundException.class)
+    protected ResponseEntity<AwesomeException> DictionaryNotFoundException(){
+        return new ResponseEntity<>(new AwesomeException("Словарь не был найден"), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(WordNotFoundException.class)
     protected ResponseEntity<AwesomeException> WordNotFoundException(){
-        return new ResponseEntity<>(new AwesomeException("Word not found"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new AwesomeException("Слово не было найдено"), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(TranslationNotFoundException.class)
     protected ResponseEntity<AwesomeException> TranslationNotFoundException(){
-        return new ResponseEntity<>(new AwesomeException("Translation not found"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new AwesomeException("Перевод не найде"), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DictionaryAlreadyExistException.class)
+    protected ResponseEntity<AwesomeException> DictionaryAlreadyExistException(){
+        return new ResponseEntity<>(new AwesomeException("Словарь уже существует"), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(WordAlreadyExistException.class)
     protected ResponseEntity<AwesomeException> WordAlreadyExistException(){
-        return new ResponseEntity<>(new AwesomeException("Word already exist"), HttpStatus.CONFLICT);
+        return new ResponseEntity<>(new AwesomeException("Слово уже существует"), HttpStatus.CONFLICT);
     }
+
     @ExceptionHandler(TranslationAlreadyExistException.class)
     protected ResponseEntity<AwesomeException> TranslationAlreadyExistException(){
-        return new ResponseEntity<>(new AwesomeException("Translation already exist"), HttpStatus.CONFLICT);
+        return new ResponseEntity<>(new AwesomeException("Перевод уже существует"), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     protected ResponseEntity<AwesomeException> MethodArgumentTypeMismatchException(){
-        return new ResponseEntity<>(new AwesomeException("The data entered is outside the expected range"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new AwesomeException("Введенные данные выходят за пределы ожидаемого диапазона"), HttpStatus.BAD_REQUEST);
     }
 
 
