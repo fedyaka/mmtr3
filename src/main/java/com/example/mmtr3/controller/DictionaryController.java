@@ -1,11 +1,7 @@
 package com.example.mmtr3.controller;
 
-import com.example.mmtr3.dto.request.DictionaryRequest;
 import com.example.mmtr3.dto.response.DictionaryResponse;
-import com.example.mmtr3.exception.MyException.DictionaryNotFoundException;
 import com.example.mmtr3.service.DictionaryService;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,19 +26,19 @@ public class DictionaryController {
         return dictionaryService.getById(id);
     }
 
-    @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
-    public DictionaryResponse addDictionary(@RequestBody DictionaryRequest dictionaryRequest){
-        return dictionaryService.addDictionary(dictionaryRequest);
-    }
+//    @PostMapping()
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public DictionaryResponse addDictionary(@RequestBody DictionaryRequest dictionaryRequest){
+//        return dictionaryService.addDictionary(dictionaryRequest);
+//    }
 
-    @DeleteMapping("/{id}")
-    public void removeDictionaryById(@PathVariable Long id){
-        try{
-            dictionaryService.removeDictionaryById(id);
-        }catch (EmptyResultDataAccessException e){
-            throw new DictionaryNotFoundException();
-        }
-    }
+//    @DeleteMapping("/{id}")
+//    public void removeDictionaryById(@PathVariable Long id){
+//        try{
+//            dictionaryService.removeDictionaryById(id);
+//        }catch (EmptyResultDataAccessException e){
+//            throw new DictionaryNotFoundException();
+//        }
+//    }
 
 }
