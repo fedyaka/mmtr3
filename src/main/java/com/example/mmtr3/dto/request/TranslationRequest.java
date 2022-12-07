@@ -3,8 +3,8 @@ package com.example.mmtr3.dto.request;
 import lombok.Getter;
 
 @Getter
-public class WordRequest {
-    private Long dictionaryId;
+public class TranslationRequest {
+    private Long wordId;
     private Long id;
-    private String word;
+    private String translation;
 }
