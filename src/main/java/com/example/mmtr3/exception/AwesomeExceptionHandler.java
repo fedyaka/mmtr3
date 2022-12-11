@@ -69,7 +69,7 @@ public class AwesomeExceptionHandler {
 
     @ExceptionHandler(TranslationNotFoundException.class)
     protected ResponseEntity<AwesomeException> TranslationNotFoundException(){
-        return new ResponseEntity<>(new AwesomeException("Перевод не найде"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new AwesomeException("Перевод не найден"), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(DictionaryAlreadyExistException.class)

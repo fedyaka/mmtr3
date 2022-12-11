@@ -29,7 +29,7 @@ public class WordService {
         if (words.isEmpty()){
             throw new DictionaryIsEmptyException();
         }
-        return words.stream().map(ToDtoService::toDto).collect(Collectors.toList());
+        return words.stream().map(ToDtoService::toDtoWithListEmpty).collect(Collectors.toList());
     }
 
     public WordResponse getById(Long id) {

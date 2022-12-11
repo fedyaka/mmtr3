@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
+@Getter
 public class TranslationResponse {
     private Long id;
     private String translation;

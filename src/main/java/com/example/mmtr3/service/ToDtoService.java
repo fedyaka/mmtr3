@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
 public class ToDtoService {
 
     public static DictionaryResponse toDto(Dictionary dictionary){
+        if (dictionary.getWords() == null || dictionary.getWords().isEmpty()){
+            return toDtoWithListEmpty(dictionary);
+        }
         return new DictionaryResponse(
                 dictionary.getId(),
                 dictionary.getName(),
@@ -22,6 +25,9 @@ public class ToDtoService {
     }
 
     public static WordResponse toDto(Word word){
+        if (word.getTranslations() == null || word.getTranslations().isEmpty()){
+            return toDtoWithListEmpty(word);
+        }
         return new WordResponse(word.getId(), word.getWord(),
                 word.getTranslations().stream().map(ToDtoService::toDto).collect(Collectors.toList()));
     }

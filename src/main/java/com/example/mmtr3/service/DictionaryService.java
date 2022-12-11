@@ -41,9 +41,7 @@ public class DictionaryService {
 
         Dictionary dictionary = new Dictionary();
         dictionary.setName(dictionaryRequest.getName());
-        Rule rule = new Rule(dictionaryRequest.getRule().getPattern(), dictionaryRequest.getRule().getDescription());
-        rule.setDictionary(dictionary);
-        dictionary.setRule(rule);
+        dictionary.setRule(new Rule(dictionaryRequest.getRule().getPattern(), dictionaryRequest.getRule().getDescription()));
 
         return ToDtoService.toDtoWithListEmpty(dictionaryRepository.save(dictionary));
     }

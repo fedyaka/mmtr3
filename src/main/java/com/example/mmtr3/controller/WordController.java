@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("dictionary/word")
+@CrossOrigin(origins = "*")
 public class WordController {
 
     WordService wordService;
