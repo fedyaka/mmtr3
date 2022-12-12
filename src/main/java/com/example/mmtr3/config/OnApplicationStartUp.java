@@ -31,10 +31,13 @@ public class OnApplicationStartUp {
     }
 
     void preloadData() {
-        DictionaryRequest request = new DictionaryRequest("Латинский словарь", "(?=.{4}$)[a-zA-Z]+$", "Слово должно состоять из 4-х латинских букв");
-        dictionaryService.addDictionary(request);
 
-        DictionaryRequest request1 = new DictionaryRequest("Цифровой словарь", "(?=.{5}$)[0-9]+$", "Слово должно состоять только из цифр длинной 5 знаков");
+
+        //"(?=.{4}$)[a-zA-Z]+$"
+        DictionaryRequest request = new DictionaryRequest("Латинский словарь", "^[a-zA-Z]{4}$", "Слово должно состоять из 4-х латинских букв");
+        dictionaryService.addDictionary(request);
+        //"(?=.{5}$)[0-9]+$"
+        DictionaryRequest request1 = new DictionaryRequest("Цифровой словарь", "^[0-9]{5}$", "Слово должно состоять только из цифр длинной 5 знаков");
         dictionaryService.addDictionary(request1);
     }
 }
