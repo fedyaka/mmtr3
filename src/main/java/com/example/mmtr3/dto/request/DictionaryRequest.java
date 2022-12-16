@@ -3,9 +3,11 @@ package com.example.mmtr3.dto.request;
 import com.example.mmtr3.dto.RuleDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class DictionaryRequest {
     private String name;
     private RuleDto rule;

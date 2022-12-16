@@ -23,7 +23,7 @@ public class Word {
     @NotBlank
     private String word;
 
-    @OneToMany(mappedBy = "word",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "word",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Translation> translations;
 
     @NotNull

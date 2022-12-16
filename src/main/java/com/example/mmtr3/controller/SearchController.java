@@ -1,6 +1,7 @@
 package com.example.mmtr3.controller;
 
 
+import com.example.mmtr3.dto.request.SearchRequest;
 import com.example.mmtr3.dto.request.WordRequest;
 import com.example.mmtr3.dto.response.WordResponse;
 import com.example.mmtr3.service.SearchService;
@@ -19,8 +20,8 @@ public class SearchController {
         this.searcher = searcher;
     }
 
-    @GetMapping
-    public List<WordResponse> search(@RequestBody WordRequest wordRequest){
-        return searcher.searchWord(wordRequest);
+    @PostMapping
+    public List<WordResponse> search(@RequestBody SearchRequest searchRequest){
+        return searcher.searchWord(searchRequest);
     }
 }

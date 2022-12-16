@@ -1,5 +1,6 @@
 package com.example.mmtr3.service;
 
+import com.example.mmtr3.dto.request.SearchRequest;
 import com.example.mmtr3.dto.request.WordRequest;
 import com.example.mmtr3.dto.response.WordResponse;
 import com.example.mmtr3.entity.Word;
@@ -21,15 +22,15 @@ public class SearchService {
         this.wordRepository = wordRepository;
     }
 
-    public List<WordResponse> searchWord(WordRequest wordRequest) {
+    public List<WordResponse> searchWord(SearchRequest searchRequest) {
         List<Word> words = new ArrayList<>();
-        if (wordRequest.getDictionaryId() == null){
-            words = wordRepository.findAllByWord(wordRequest.getWord());
+        if (searchRequest.getDictionaryId() == null){
+            words = wordRepository.findAllByWord(searchRequest.getWord());
             if(words.isEmpty()){
                 throw new WordNotFoundException();
             }
         } else {
-            words.add(wordRepository.findWordByWordAndDictionaryId(wordRequest.getWord(), wordRequest.getDictionaryId())
+            words.add(wordRepository.findWordByWordAndDictionaryId(searchRequest.getWord(), searchRequest.getDictionaryId())
                     .orElseThrow(WordNotFoundException::new));
         }
         return words.stream().map(ToDtoService::toDto).collect(Collectors.toList());

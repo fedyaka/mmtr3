@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TranslationRequest {
-    private Long wordId;
-    private Long id;
-    private String translation;
+public class SearchRequest {
+    private Long dictionaryId;
+    private String word;
 }

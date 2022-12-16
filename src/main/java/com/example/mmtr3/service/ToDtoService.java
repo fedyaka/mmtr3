@@ -28,7 +28,7 @@ public class ToDtoService {
         if (word.getTranslations() == null || word.getTranslations().isEmpty()){
             return toDtoWithListEmpty(word);
         }
-        return new WordResponse(word.getId(), word.getWord(),
+        return new WordResponse(word.getDictionary().getId(), word.getId(), word.getWord(),
                 word.getTranslations().stream().map(ToDtoService::toDto).collect(Collectors.toList()));
     }
 
@@ -44,7 +44,7 @@ public class ToDtoService {
     }
 
     public static WordResponse toDtoWithListEmpty(Word word) {
-        return new WordResponse(word.getId(), word.getWord(), null);
+        return new WordResponse(word.getDictionary().getId(), word.getId(), word.getWord(), null);
     }
 
 }

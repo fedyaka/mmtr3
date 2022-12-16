@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class WordResponse {
+    private Long dictionaryId;
     private Long id;
     private String word;
 

@@ -43,8 +43,8 @@ public class TranslationService {
         Rule rule = word.getDictionary().getRule();
         checkByRule(rule, translationRequest);
 
-        if (translationRepository.existsByTranslation(translationRequest.getTranslation())){
-            throw new WordAlreadyExistException();
+        if (translationRepository.existsTranslationByWordIdAndTranslation(word.getId(), translationRequest.getTranslation())){
+            throw new TranslationAlreadyExistException();
         }
 
         Translation translation = new Translation();
@@ -57,7 +57,7 @@ public class TranslationService {
         Translation translation = translationRepository.findById(translationRequest.getId()).orElseThrow(TranslationNotFoundException::new);
 
         checkByRule(translation.getWord().getDictionary().getRule(), translationRequest);
-        if (translationRepository.existsByTranslation(translationRequest.getTranslation())){
+        if (translationRepository.existsTranslationByWordIdAndTranslation(translation.getWord().getId() ,translationRequest.getTranslation())){
             throw new TranslationAlreadyExistException();
         }
 

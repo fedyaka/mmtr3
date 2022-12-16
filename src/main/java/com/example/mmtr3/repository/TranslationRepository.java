@@ -11,6 +11,8 @@ public interface TranslationRepository extends CommonRepository<Translation> {
 
     List<Translation> findAllByWordId(Long wordId);
 
-    boolean existsByTranslation(String translation);
+    boolean existsTranslationByWordIdAndTranslation(Long wordId, String translation);
+
+
 
 }
