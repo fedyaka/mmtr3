@@ -1,7 +1,6 @@
 package com.example.mmtr3.service;
 
 import com.example.mmtr3.dto.request.SearchRequest;
-import com.example.mmtr3.dto.request.WordRequest;
 import com.example.mmtr3.dto.response.WordResponse;
 import com.example.mmtr3.entity.Word;
 import com.example.mmtr3.exception.MyException.WordNotFoundException;

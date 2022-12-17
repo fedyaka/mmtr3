@@ -2,7 +2,6 @@ package com.example.mmtr3.controller;
 
 
 import com.example.mmtr3.dto.request.SearchRequest;
-import com.example.mmtr3.dto.request.WordRequest;
 import com.example.mmtr3.dto.response.WordResponse;
 import com.example.mmtr3.service.SearchService;
 import org.springframework.web.bind.annotation.*;

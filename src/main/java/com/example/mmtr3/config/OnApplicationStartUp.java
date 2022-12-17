@@ -1,8 +1,6 @@
 package com.example.mmtr3.config;
 
 import com.example.mmtr3.dto.request.DictionaryRequest;
-import com.example.mmtr3.entity.Dictionary;
-import com.example.mmtr3.entity.Rule;
 import com.example.mmtr3.repository.DictionaryRepository;
 import com.example.mmtr3.service.DictionaryService;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
